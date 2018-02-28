@@ -7,7 +7,7 @@
 var app = require('../app');
 var debug = require('debug')('yelp-help-server:server');
 var http = require('http');
-var https = requre('https');
+var https = require('https');
 var fs = require('fs');
 
 /**
@@ -30,7 +30,7 @@ var sslOptions = {
  */
 
 var server = http.createServer(app);
-var https-server = https.createServer(sslOptions, app).listen('6769');
+var https_server = https.createServer(sslOptions, app).listen('6769');
 
 /**
  * Listen on provided port, on all network interfaces.
