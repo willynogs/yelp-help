@@ -31,7 +31,7 @@ var sslOptions = {
  */
 
 var server = http.createServer(app);
-var https_server = https.createServer(sslOptions, app).listen('6769');
+var https_server = https.createServer(sslOptions, app).listen(3000);
 
 /**
  * Listen on provided port, on all network interfaces.
