@@ -7,31 +7,20 @@
 var app = require('../app');
 var debug = require('debug')('yelp-help-server:server');
 var http = require('http');
-var https = require('https');
 var fs = require('fs');
 
 /**
  * Get port from environment and store in Express.
  */
 
-var port = normalizePort(process.env.PORT || '6767');
+var port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
 
 /**
- * SSL Stuff
- */
-var sslOptions = {
-   key: fs.readFileSync('key.pem'),
-   cert: fs.readFileSync('cert.pem'),
-   passphrase: 'yelp-pass'
- };
-
-/**
- * Create HTTP/HTTPS server.
+ * Create HTTP server.
  */
 
 var server = http.createServer(app);
-var https_server = https.createServer(sslOptions, app).listen(3000);
 
 /**
  * Listen on provided port, on all network interfaces.
