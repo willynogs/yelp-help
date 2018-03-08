@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import BodyCard from './BodyCard';
 import * as yelp from '../lib/yelp';
 
 class Home extends Component {
@@ -41,46 +42,43 @@ class Home extends Component {
     return (
       <div className="container">
         <h1 id='main-title' className='display-3 text-center'>Yelp Help</h1>
-
-        <div className='row'>
-          <div className='col-md-12 body-card'>
-            <h2 className='body-title'>Search Radius</h2>
-            <div className="btn-group" role="group" aria-label="Basic example">
-              <button type="button" onClick={() => this.setState({ radius: 1610 })} className={`btn btn-secondary ${this.state.radius === 1610 ? 'active' : null}`}>
-                1 Mile
-              </button>
-              <button type="button" onClick={() => this.setState({ radius: 16100 })} className={`btn btn-secondary ${this.state.radius === 16100 ? 'active' : null}`}>
-                10 Miles
-              </button>
-              <button type="button" onClick={() => this.setState({ radius: 40000 })} className={`btn btn-secondary ${this.state.radius === 40000 ? 'active' : null}`}>
-                25 Miles
-              </button>
-            </div>
-          </div>
-          <div className='col-md-12 body-card'>
-            <h2 className='body-title'>Price</h2>
-            <div className="btn-group" role="group" aria-label="Basic example">
-              <button type="button" onClick={() => this.setState({ price: 1 })} className={`btn btn-secondary ${this.state.price === 1 ? 'active' : null}`}>
-                $
-              </button>
-              <button type="button" onClick={() => this.setState({ price: 2 })} className={`btn btn-secondary ${this.state.price === 2 ? 'active' : null}`}>
-                $$
-              </button>
-              <button type="button" onClick={() => this.setState({ price: 3 })} className={`btn btn-secondary ${this.state.price === 3 ? 'active' : null}`}>
-                $$$
-              </button>
-              <button type="button" onClick={() => this.setState({ price: 4 })} className={`btn btn-secondary ${this.state.price === 4 ? 'active' : null}`}>
-                $$$$
-              </button>
-            </div>
-          </div>
-          <div className='col-md-12 body-card'>
-            <h2 className='body-title'>Submit</h2>
-            <button type="button" className={`btn btn-primary ${this.state.loading ? 'disabled' : ''}`} onClick={() => this._random()}>
-              {this.state.loading ? 'Loading' : 'Random'}
+        
+        <BodyCard title='Search Radius'>
+          <div className="btn-group" role="group" aria-label="Basic example">
+            <button type="button" onClick={() => this.setState({ radius: 1610 })} className={`btn btn-secondary ${this.state.radius === 1610 ? 'active' : null}`}>
+              1 Mile
+            </button>
+            <button type="button" onClick={() => this.setState({ radius: 16100 })} className={`btn btn-secondary ${this.state.radius === 16100 ? 'active' : null}`}>
+              10 Miles
+            </button>
+            <button type="button" onClick={() => this.setState({ radius: 40000 })} className={`btn btn-secondary ${this.state.radius === 40000 ? 'active' : null}`}>
+              25 Miles
             </button>
           </div>
-        </div>
+        </BodyCard>
+        
+        <BodyCard title='Price'>
+          <div className="btn-group" role="group" aria-label="Basic example">
+            <button type="button" onClick={() => this.setState({ price: 1 })} className={`btn btn-secondary ${this.state.price === 1 ? 'active' : null}`}>
+              $
+            </button>
+            <button type="button" onClick={() => this.setState({ price: 2 })} className={`btn btn-secondary ${this.state.price === 2 ? 'active' : null}`}>
+              $$
+            </button>
+            <button type="button" onClick={() => this.setState({ price: 3 })} className={`btn btn-secondary ${this.state.price === 3 ? 'active' : null}`}>
+              $$$
+            </button>
+            <button type="button" onClick={() => this.setState({ price: 4 })} className={`btn btn-secondary ${this.state.price === 4 ? 'active' : null}`}>
+              $$$$
+            </button>
+          </div>
+        </BodyCard>
+        
+        <BodyCard title='Submit'>
+          <button type="button" className={`btn btn-primary ${this.state.loading ? 'disabled' : ''}`} onClick={() => this._random()}>
+            {this.state.loading ? 'Loading' : 'Random'}
+          </button>
+        </BodyCard>
       </div>
     );
   }
