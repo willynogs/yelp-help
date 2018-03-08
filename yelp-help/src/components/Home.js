@@ -10,7 +10,7 @@ class Home extends Component {
     this.state = {
       latitude: null,
       longitude: null,
-      radius: 40000,
+      radius: 1610,
       price: 1,
       rating: 1,
       loading: true
@@ -28,7 +28,7 @@ class Home extends Component {
     const { latitude, longitude, radius, price, rating, loading } = this.state;
     const { history } = this.props;
     if(latitude && longitude && !loading) {
-      yelp.random(latitude, longitude, radius, price)
+      yelp.random(latitude, longitude, radius, price, rating)
       .then(response => {
         const { id } = response.body.businesses[0];
         history.push(`/result/${id}`);
@@ -44,7 +44,7 @@ class Home extends Component {
 
         <div className='row'>
           <div className='col-md-12 body-card'>
-            <h2 className='body-title'>1. Search Radius</h2>
+            <h2 className='body-title'>Search Radius</h2>
             <div className="btn-group" role="group" aria-label="Basic example">
               <button type="button" onClick={() => this.setState({ radius: 1610 })} className={`btn btn-secondary ${this.state.radius === 1610 ? 'active' : null}`}>
                 1 Mile
@@ -58,7 +58,7 @@ class Home extends Component {
             </div>
           </div>
           <div className='col-md-12 body-card'>
-            <h2 className='body-title'>2. Price</h2>
+            <h2 className='body-title'>Price</h2>
             <div className="btn-group" role="group" aria-label="Basic example">
               <button type="button" onClick={() => this.setState({ price: 1 })} className={`btn btn-secondary ${this.state.price === 1 ? 'active' : null}`}>
                 $
@@ -75,38 +75,8 @@ class Home extends Component {
             </div>
           </div>
           <div className='col-md-12 body-card'>
-            <h2 className='body-title'>3. Rating</h2>
-            <div className="btn-group" role="group" aria-label="Basic example">
-              <button type="button" onClick={() => this.setState({ rating: 1 })} className={`btn btn-secondary ${this.state.rating === 1 ? 'active' : null}`}>
-                <i className="fa fa-star" aria-hidden="true"></i>
-              </button>
-              <button type="button" onClick={() => this.setState({ rating: 2 })} className={`btn btn-secondary ${this.state.rating === 2 ? 'active' : null}`}>
-                <i className="fa fa-star" aria-hidden="true"></i>
-                <i className="fa fa-star" aria-hidden="true"></i>
-              </button>
-              <button type="button" onClick={() => this.setState({ rating: 3 })} className={`btn btn-secondary ${this.state.rating === 3 ? 'active' : null}`}>
-                <i className="fa fa-star" aria-hidden="true"></i>
-                <i className="fa fa-star" aria-hidden="true"></i>
-                <i className="fa fa-star" aria-hidden="true"></i>
-              </button>
-              <button type="button" onClick={() => this.setState({ rating: 4 })} className={`btn btn-secondary ${this.state.rating === 4 ? 'active' : null}`}>
-                <i className="fa fa-star" aria-hidden="true"></i>
-                <i className="fa fa-star" aria-hidden="true"></i>
-                <i className="fa fa-star" aria-hidden="true"></i>
-                <i className="fa fa-star" aria-hidden="true"></i>
-              </button>
-              <button type="button" onClick={() => this.setState({ rating: 5 })} className={`btn btn-secondary ${this.state.rating === 5 ? 'active' : null}`}>
-                <i className="fa fa-star" aria-hidden="true"></i>
-                <i className="fa fa-star" aria-hidden="true"></i>
-                <i className="fa fa-star" aria-hidden="true"></i>
-                <i className="fa fa-star" aria-hidden="true"></i>
-                <i className="fa fa-star" aria-hidden="true"></i>
-              </button>
-            </div>
-          </div>
-          <div className='col-md-12 body-card'>
-            <h2 className='body-title'>4. Submit</h2>
-            <button type="button" className={`btn btn-primary ${this.state.loading ? 'disabled' : null}`} onClick={() => this._random()}>
+            <h2 className='body-title'>Submit</h2>
+            <button type="button" className={`btn btn-primary ${this.state.loading ? 'disabled' : ''}`} onClick={() => this._random()}>
               {this.state.loading ? 'Loading' : 'Random'}
             </button>
           </div>

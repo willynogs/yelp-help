@@ -1,3 +1,27 @@
+/* Bootstrap Overrides */
+.btn-primary {
+  color: #333;
+  background-color: #FFF;
+  border-color: #4e555b;
+}
+
+.btn-primary:hover {
+  color: #FFF;
+  background-color: #333;
+  border-color: #4e555b;
+}
+
+.btn-primary.disabled {
+  color: #333;
+  background-color: #FFF;
+  border-color: #4e555b;
+}
+
+.btn-secondary {
+  color: #333;
+  background-color: #FFF;
+}
+
 body {
   font-family: 'Open Sans', sans-serif;
   background: #d32323;

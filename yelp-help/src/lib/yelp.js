@@ -31,7 +31,7 @@ export const autocomplete = (text, latitude, longitude) => {
 USAGE: pass your location and get a random restaurant
 RETURNS: promise
 */
-export const random = (latitude, longitude, radius, price) => {
+export const random = (latitude, longitude, radius, price, rating) => {
   return new Promise((resolve, reject) => {
     fetch('/yelp/random', {
       method: 'POST',
