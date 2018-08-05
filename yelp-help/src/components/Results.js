@@ -41,7 +41,7 @@ class Home extends Component {
               <a href={url} target='_blank'>{name}</a>
             </h5>
             <p className="card-text"><b>Phone:</b> <a href={'tel:' + phone}>{phone}</a></p>
-            <p className="card-text"><b>Address:</b> {location.address1}, {location.city}, {location.state} {location.zip_code}</p>
+            <p className="card-text"><b>Address:</b> <a href={'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(name)} target='_blank'>{location.address1}, {location.city}, {location.state} {location.zip_code}</a></p>
             <p className="card-text"><b>Price:</b> {price}</p>
             <p className="card-text"><b>Rating:</b> {this._rating()}</p>
           </div>
