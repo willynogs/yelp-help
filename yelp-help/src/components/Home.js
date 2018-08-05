@@ -14,7 +14,8 @@ class Home extends Component {
       radius: 1610,
       price: 1,
       rating: 1,
-      loading: true
+      loading: true,
+      access: true
     };
   }
 
@@ -22,6 +23,10 @@ class Home extends Component {
     navigator.geolocation.getCurrentPosition(pos => {
       const { latitude, longitude } = pos.coords;
       this.setState({ latitude, longitude, loading: false });
+    }, e => {
+      if(e.code == 1) {
+        this.setState({ access: false, loading: false });
+      }
     });
   }
 
@@ -42,8 +47,15 @@ class Home extends Component {
     return (
       <div className="container">
         <h1 id='main-title' className='display-3 text-center'>Yelp Help</h1>
-        
-        <BodyCard title='Search Radius'>
+
+        <div className='col-md-12'>
+          <p id='main-blurb' className='text-center'>
+            {"Let us help you find a new restaurant in your area! Just tell us how far you're willing to drive and how much you're willing to spend and we'll do the rest. PLEASE NOTE: You must allow location services for this website to function."}
+          </p>
+        </div>
+
+        <div className='col-md-12'>
+          <h2 className='body-title'>Search Radius</h2>
           <div className="btn-group" role="group" aria-label="Basic example">
             <button type="button" onClick={() => this.setState({ radius: 1610 })} className={`btn btn-secondary ${this.state.radius === 1610 ? 'active' : null}`}>
               1 Mile
@@ -55,9 +67,10 @@ class Home extends Component {
               25 Miles
             </button>
           </div>
-        </BodyCard>
-        
-        <BodyCard title='Price'>
+        </div>
+
+        <div className='col-md-12'>
+          <h2 className='body-title'>Price</h2>
           <div className="btn-group" role="group" aria-label="Basic example">
             <button type="button" onClick={() => this.setState({ price: 1 })} className={`btn btn-secondary ${this.state.price === 1 ? 'active' : null}`}>
               $
@@ -72,13 +85,13 @@ class Home extends Component {
               $$$$
             </button>
           </div>
-        </BodyCard>
-        
-        <BodyCard title='Submit'>
-          <button type="button" className={`btn btn-primary ${this.state.loading ? 'disabled' : ''}`} onClick={() => this._random()}>
-            {this.state.loading ? 'Loading' : 'Random'}
+        </div>
+
+        <div className='col-md-12'>
+          <button type='button' id='submit-button' className={`btn btn-block btn-primary ${this.state.loading ? 'disabled' : ''}`} onClick={() => this._random()}>
+            {this.state.loading ? 'Loading' : 'Find a Restaurant!'}
           </button>
-        </BodyCard>
+        </div>
       </div>
     );
   }
