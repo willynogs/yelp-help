@@ -39,7 +39,7 @@ export const random = (latitude, longitude, radius, price, rating) => {
         'Content-Type': 'application/json',
         'Accept': 'application/json'
       },
-      body: JSON.stringify({ limit: 1, latitude, longitude, radius, price })
+      body: JSON.stringify({ limit: 1, latitude, longitude, radius, price, term: "restaurants" })
     })
     .then(res => res.json())
     .then(body => resolve(body))
