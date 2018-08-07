@@ -27,7 +27,7 @@ router.post('/random', function(req, res, next) {
       })
       .catch(e => console.log(e));
     } else {
-      res.json({ error: true, statusCode: response.statusCode });
+      res.status(response.statusCode).json({ error: true, statusCode: response.statusCode });
     }
   })
   .catch(e => {
@@ -49,8 +49,7 @@ router.post('/lookup/:id', function(req, res, next) {
   })
   .catch(e => {
     let body = JSON.parse(e.response.body);
-    res.json({ error: true, statusCode: e.statusCode, statusText: body.error.code });
-    console.log(e);
+    res.status(e.statusCode).json({ error: true, statusCode: e.statusCode, statusText: body.error.code });
   });
 });
 

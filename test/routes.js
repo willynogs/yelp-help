@@ -32,9 +32,9 @@ describe('/POST random', function() {
     })
     .end(function(err, res) {
       should.not.exist(err);
+      res.should.have.status(200);
       res.body.error.should.equal(false);
       res.body.body.businesses.length.should.equal(1);
-      res.should.have.status(200);
       done();
     });
   });
@@ -46,10 +46,23 @@ describe('/POST find by id', function() {
     .post('/yelp/lookup/3aLAjUNE_eTT6AGYYC7OGQ')
     .end(function(err, res) {
       should.not.exist(err);
+      res.should.have.status(200);
       res.body.error.should.equal(false);
       res.body.body.id.should.equal('3aLAjUNE_eTT6AGYYC7OGQ');
-      res.should.have.status(200);
       done();
     })
   })
+});
+
+describe('/POST find by id (invalid)', function() {
+  it('it should return the appropriate error when an invalid id is supplied', function(done) {
+    chai.request(server)
+    .post('/yelp/lookup/123')
+    .end(function(err, res) {
+      should.not.exist(err);
+      res.should.have.status(404);
+      res.body.statusText.should.equal("BUSINESS_NOT_FOUND");
+      done();
+    });
+  });
 });
