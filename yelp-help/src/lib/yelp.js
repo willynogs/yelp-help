@@ -57,7 +57,13 @@ export const lookup = (id) => {
         }
       })
       .then(res => res.json())
-      .then(body => resolve(body))
+      .then(body => {
+        if(!body.error) {
+          resolve(body);
+        } else {
+          reject(body);
+        }
+      })
       .catch(e => reject(e));
     });
 };

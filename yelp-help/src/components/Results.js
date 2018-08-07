@@ -7,6 +7,8 @@ class Home extends Component {
 
     this.state = {
       loading: true,
+      error: false,
+      errorText: '',
       data: {}
     };
   }
@@ -18,16 +20,22 @@ class Home extends Component {
         this.setState({ data: response.body, loading: false });
       }
     })
-    .catch(e => console.log(e));
+    .catch(e => {
+      this.setState({ loading: false, error: true, errorText: e.statusText })
+    });
   }
 
   _loading() {
-    const { loading } = this.state;
+    const { loading, error, errorText } = this.state;
     const { image_url, location, name, phone, price, url } = this.state.data;
 
     if(loading) {
       return (
         <h1 id='main-title' className='display-3 text-center'>Loading</h1>
+      );
+    } else if(error) {
+      return (
+        <h1 id='main-title' className='display-3 text-center'>Oops! Restaurant not found.</h1>
       );
     }
 
