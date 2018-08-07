@@ -31,6 +31,8 @@ router.post('/random', function(req, res, next) {
     }
   })
   .catch(e => {
+    let body = JSON.parse(e.response.body);
+    res.json({ error: true, statusCode: e.statusCode, statusText: body.error.code });
     console.log(e);
   });
 });
@@ -46,6 +48,8 @@ router.post('/lookup/:id', function(req, res, next) {
     }
   })
   .catch(e => {
+    let body = JSON.parse(e.response.body);
+    res.json({ error: true, statusCode: e.statusCode, statusText: body.error.code });
     console.log(e);
   });
 });
