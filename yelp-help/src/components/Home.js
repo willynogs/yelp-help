@@ -9,6 +9,7 @@ class Home extends Component {
     this._random = this._random.bind(this);
 
     this.state = {
+      step: 0,
       latitude: null,
       longitude: null,
       radius: 1610,
@@ -28,6 +29,12 @@ class Home extends Component {
         this.setState({ access: false, loading: false });
       }
     });
+  }
+
+  _nextStep() {
+    let { step } = this.state;
+    step += 1;
+    this.setState({ step });
   }
 
   _random() {
@@ -52,6 +59,9 @@ class Home extends Component {
           <p id='main-blurb' className='text-center'>
             {"Let us help you find a new restaurant in your area! Just tell us how far you're willing to drive and how much you're willing to spend and we'll do the rest. PLEASE NOTE: You must allow location services for this website to function."}
           </p>
+          <button type='button' id='submit-button' className={`btn btn-block btn-primary ${this.state.loading ? 'disabled' : ''}`} onClick={() => this._nextStep()}>
+            {this.state.loading ? 'Loading' : 'Begin'}
+          </button>
         </div>
 
         <div className='col-md-12'>
